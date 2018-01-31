@@ -6,18 +6,18 @@
 <body>
     <div class="container">
       <div class="jumbotron">
-          <h1 class="display-4">Celebrity GIF API!</h1>
-          <hr class="my-4"><form id="topic-form"><label for="topic-input">Use this input box to add your own celebrity button below!</label>
-              <input type="text" class="form-control" id="topic-input"><br>
-
-
+          <h1><center>Celebrity GIF API!</center></h1>
+          <hr class="my-4"><form id="topic-form"><label for="topic-input">After clicking any celebrity button, you will see a list of their trending GIF's... click on the GIF's to make them move! Use this input box to add your own celebrity button below!</label><input type="text" class="form-control" id="topic-input"><br>
             <input id="add-topic" type="submit" class="btn btn-primary" value="Add Celebrity">
           </form>
+          
+
+
           <div id="buttons-view"></div>
       </div>
     </div>
     <div class="container">
-      <div class="row row-padded row-bordered row-centered">
+      <div class="row row-bordered row-centered">
           <div class="col-sm-12">
               <div class="row">
                 <div id="gif-view"></div>
@@ -32,109 +32,5 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script type=text/javascript>
-
-topics = ['kanye west', 'kim kardashian', 'donald trump', 'justin bieber', 'kylie jenner', 'beyonce', 'oprah winfrey', 'jay z', 'travis scott', 'drake'];
-
-
-var topicImage;
-
-
-function displayGifs() {
-
-	var APIKey = "432HzlwijziY4lOejK6Ug8vkj557512E";
-	var topic = $(this).attr("data-name");
-
-	var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=432HzlwijziY4lOejK6Ug8vkj557512E&q=" + topic + "&limit=10&offset=0&rating=G&lang=en" + APIKey;
-
-	$.ajax({
-	      url: queryURL,
-	      method: 'GET' 
-	    }).done(function(response){
-	
-
-	        console.log(response);
-
-	        $('#gif-view').empty();
-
-	        for(var j=0; j<response.data.length; j++){
-
-	      		var gifHolder = $('<div class="gifHolder"></div>');
-            	$('#gif-view').append(gifHolder);
-
-            	gifHolder.append('<div><b>Gif Rating: </b>' + response.data[j].rating);
-
-	      		topicImage = $('<img>');
-	      		
-          		gifHolder.append(topicImage);
-          		topicImage.addClass('clickable');
-          		topicImage.attr('src', response.data[j].images.fixed_height_still.url);
-          		topicImage.attr('data-still', response.data[j].images.fixed_height_still.url);
-          		topicImage.attr('data-moving', response.data[j].images.fixed_height.url);	
-          		topicImage.attr('data-state', 'still');	
-	        }   
-    	});
-	}
-
-	$(document).on("click", '.clickable', function(){
-
-
-		var still = $(this).attr('data-still');
-		var moving = $(this).attr('data-moving');
-		var state = $(this).attr('data-state');
-	
-		if(state === 'still'){
-		
-			$(this).attr('src', moving);
-			$(this).attr('data-state', 'moving');
-			
-		} else{
-
-			$(this).attr('src', still);
-			$(this).attr('data-state', 'still');
-			
-		}
-	});
-
-function renderButtons() {
-
-
-  $("#buttons-view").empty();
-
-  for (var i = 0; i < topics.length; i++) {
-
-    var newTopic = $("<button>");
-    newTopic.addClass("topic btn btn-primary");
-
- 
-    newTopic.attr("data-name", topics[i]);
-
-
-    newTopic.text(topics[i]);
-
-    $("#buttons-view").append(newTopic);
-  }
-}
-
-
-      $("#add-topic").on("click", function(event) {
-        event.preventDefault();
-   
-
-
-
-        var topic = $("#topic-input").val().trim();
-
-
-        topics.push(topic);
-
-
-        renderButtons();
-      });
-
-
-      $(document).on("click", ".topic", displayGifs);
-      renderButtons();
-
-  </script>
+<script src="assets/javascript/app.js"></script>
 </html>
