@@ -1,0 +1,16 @@
+.jumbotron {
+	background-color: orange;
+}
+
+#gif-view{
+	background-color: gray;
+	align-content: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+
+#add-topic{
+	background-color:lime;
+}

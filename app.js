@@ -1,5 +1,5 @@
 
-topics = ['kanye west', 'kim kardashian', 'donald trump', 'justin bieber', 'kylie jenner', 'beyonce', 'oprah winfrey', 'jay z', 'travis scott', 'drake'];
+topics = ['Kanye West', 'Kim Kardashian', 'Donald Trump', 'Justin Bieber', 'Kylie Jenner', 'Beyonce', 'Oprah Winfrey', 'Jay Z', 'Travis Scott', 'Drake'];
 
 
 var topicImage;
